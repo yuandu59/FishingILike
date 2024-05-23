@@ -1,0 +1,10 @@
+{
+    "Name": "FishingILike",
+    "Author": "ebbbb",
+    "Version": "1.0.0",
+    "Description": "Add more bait and bobber slots to Advanced Iridium Rod",
+    "UniqueID": "Ebbbb.FishingILike",
+    "EntryDll": "FishingILike.dll",
+    "MinimumApiVersion": "4.0.0",
+    "UpdateKeys": ["none for now"]
+}

@@ -1,0 +1,8 @@
+D:\space\10_code\sdvMod\FishingILike\bin\Debug\net6.0\FishingILike.deps.json
+D:\space\10_code\sdvMod\FishingILike\bin\Debug\net6.0\FishingILike.dll
+D:\space\10_code\sdvMod\FishingILike\obj\Debug\net6.0\FishingILike.csproj.AssemblyReference.cache
+D:\space\10_code\sdvMod\FishingILike\obj\Debug\net6.0\FishingILike.GeneratedMSBuildEditorConfig.editorconfig
+D:\space\10_code\sdvMod\FishingILike\obj\Debug\net6.0\FishingILike.AssemblyInfoInputs.cache
+D:\space\10_code\sdvMod\FishingILike\obj\Debug\net6.0\FishingILike.AssemblyInfo.cs
+D:\space\10_code\sdvMod\FishingILike\obj\Debug\net6.0\FishingILike.csproj.CoreCompileInputs.cache
+D:\space\10_code\sdvMod\FishingILike\obj\Debug\net6.0\FishingILike.dll

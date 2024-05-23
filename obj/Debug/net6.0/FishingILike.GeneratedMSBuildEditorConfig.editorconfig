@@ -1,0 +1,16 @@
+is_global = true
+build_property.RootNamespace = FishingILike
+build_property.RootNamespace = FishingILike
+build_property.TranslationClassBuilder_AddGetByKey = 
+build_property.TranslationClassBuilder_AddKeyMap = 
+build_property.TranslationClassBuilder_ClassModifiers = 
+build_property.TranslationClassBuilder_ClassName = 
+build_property.TranslationClassBuilder_Namespace = 
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.ProjectDir = D:\space\10_code\sdvMod\FishingILike\
