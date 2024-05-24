@@ -10,15 +10,17 @@ namespace Ebbbb.FishingILike
 {
     public sealed class ModConfig
     {
-        public int NumBaitSlots {get; set; } = 1;
+        // public int NumBaitSlots {get; set; } = 1;
 
-        public int NumTackleSlots {get; set; } = 2;
+        // public int NumTackleSlots {get; set; } = 2;
 
-        public ModeConsume ModeConsumeBait {get; set; } = ModeConsume.AllConsume;
+        // public bool EnableChangeRod {get; set; } = true;
 
-        public ModeConsume ModeConsumeTackle {get; set; } = ModeConsume.AllConsume;
+        // public ModeConsume ModeConsumeBait {get; set; } = ModeConsume.AllConsume;
 
-        public SButton? AdjustRodKey { get; set; } = SButton.K;
+        // public ModeConsume ModeConsumeTackle {get; set; } = ModeConsume.AllConsume;
+
+        // public SButton? AdjustRodKey { get; set; } = SButton.K;
 
         // public bool ToggleThiefRingEffectStackable {get; set; } = false;
 

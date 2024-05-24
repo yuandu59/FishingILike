@@ -25,11 +25,15 @@ public class ModEntry : Mod
     {
         // I18n.Init(helper.Translation);
         config = Helper.ReadConfig<ModConfig>();
-        helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
-        helper.Events.Input.ButtonPressed += this.OnButtonPressed;
-        helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
-        helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
-        helper.Events.Player.InventoryChanged += this.OnInventoryChanged;
+
+        helper.Events.GameLoop.GameLaunched += OnGameLaunched;
+        helper.Events.Input.ButtonPressed += OnButtonPressed;
+        helper.Events.GameLoop.OneSecondUpdateTicked += OnOneSecondUpdateTicked;
+        helper.Events.GameLoop.DayStarted += OnDayStarted;
+        helper.Events.Player.InventoryChanged += OnInventoryChanged;
+
+        // add custom debug commands about console
+        helper.ConsoleCommands.Add("debug_back_vanilla_rod", "Turn may new rod back into vanilla rod in your inventory", Debug.RecoverVanillaRod);
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -37,15 +41,18 @@ public class ModEntry : Mod
 
 #region Gmcm Settings
         // get Generic Mod Config Menu's API (if it's installed)
-        var configMenu = this.Helper.ModRegistry.GetApi<IGenericModConfigMenuApi>("spacechase0.GenericModConfigMenu");
+        var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuApi>("spacechase0.GenericModConfigMenu");
         if (configMenu is null)
             return;
 
         // register mod
         configMenu.Register(ModManifest,
-            reset: () => this.config = new ModConfig(),
-            save: () => this.Helper.WriteConfig(this.config)
+            reset: () => config = new ModConfig(),
+            save: () => Helper.WriteConfig(config)
         );
+
+/*
+        configMenu.AddSectionTitle(ModManifest, text: () => "Manage Key");
 
         configMenu.AddKeybind(ModManifest,
             name: () => "Open Fishing Rod Attachment UI",
@@ -60,7 +67,7 @@ public class ModEntry : Mod
             tooltip: () => "",
             getValue: () => config.NumBaitSlots,
             setValue: value => config.NumBaitSlots = value,
-            min: 0, max: 16, interval: 1
+            min: 0, max: MyConstant.maxBaitConst, interval: 1
         );
 
         configMenu.AddNumberOption(ModManifest, 
@@ -68,7 +75,7 @@ public class ModEntry : Mod
             tooltip: () => "",
             getValue: () => config.NumTackleSlots,
             setValue: value => config.NumTackleSlots = value,
-            min: 0, max: 16, interval: 1
+            min: 0, max: MyConstant.maxTackleConst, interval: 1
         );
 
         configMenu.AddTextOption(ModManifest,
@@ -86,26 +93,36 @@ public class ModEntry : Mod
             setValue: value => config.ModeConsumeTackle = (ModeConsume)Enum.Parse(typeof(ModeConsume), value),
             allowedValues: Enum.GetNames(typeof(ModeConsume))
         );
+*/
 
-        configMenu.OnFieldChanged(ModManifest, (str, obj) => this.OnConfigChanged(str, obj));
+        configMenu.OnFieldChanged(ModManifest, (str, obj) => OnConfigChanged(str, obj));
 #endregion
 
     }
 
-    private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
+    private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
+/*
         // change rod in player's inventory
-        Utility.ChangeRodPlayerInventory(Game1.player, config);
+        int count = MyUtility.ChangeRodPlayerInventory(Game1.player, config);
+        TestLog($"Success change count(when day start): {count}.");
+*/
     }
 
     private void OnInventoryChanged(object? sender, InventoryChangedEventArgs e)
     {
-        Utility.ChangeRodPlayerInventory(e.Player, config);
+/*
+        int count = MyUtility.ChangeRodPlayerInventory(e.Player, config);
+        TestLog($"Success change count(when inventory change): {count}.");
+*/
     }
 
     public void OnConfigChanged(string str, object obj)
     {
-        Utility.UpdateRodPlayerInventory(Game1.player, config);
+/*
+        MyUtility.UpdateRodPlayerInventory(Game1.player, config);
+        TestLog($"Success update when config change.");
+*/
     }
 
     private void OnButtonPressed(object? sender, ButtonPressedEventArgs e)
@@ -113,7 +130,8 @@ public class ModEntry : Mod
         // 如果玩家还没有进入存档，则取消执行
         if (!Context.IsWorldReady)
             return;
-        
+
+/*        
         // press adjust key to show my custom inventory for rod
         if (e.Equals(config.AdjustRodKey) && Context.CanPlayerMove && 
             Game1.activeClickableMenu == null && !Game1.player.isEating && 
@@ -122,12 +140,14 @@ public class ModEntry : Mod
             my_rod.OpenMenu();
             TestLog("Now holding target rod and try to render inventory");
         }
-
+*/
+/*
         // debug
         if (e.Button.Equals(SButton.J)) {
-            TestLog(Debug.DebugTestMyFishingRodInventory(Game1.player));
+            TestLog($"Vanilla Rod: {Debug.TestVanillaRodIndex}.");
+            TestLog($"My Rod: {Debug.TestMyRodIndex}.");
         }
-
+*/
     }
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)

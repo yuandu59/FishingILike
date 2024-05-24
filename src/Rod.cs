@@ -23,11 +23,10 @@ public class MyFishingRod : FishingRod
     private ModeConsume modeConsumeBait {get; set; } = ModeConsume.AllConsume;
     private ModeConsume modeConsumeTackle {get; set; } = ModeConsume.AllConsume;
 
-    private int maxBait {get; set; } = 16;
-    private int maxTackle {get; set; } = 16;
+    private int maxBait {get; set; } = MyConstant.maxBaitConst;
+    private int maxTackle {get; set; } = MyConstant.maxTackleConst;
 
-    private int maxNumSlotOneRow {get; set; } = 8;
-    private int pixelSize {get; set; } = 68;
+    private int slotPixelSize {get; set; } = 68;
 
     private Item?[] BaitAttachments;
     private Item?[] TackleAttachments;
@@ -63,30 +62,15 @@ public class MyFishingRod : FishingRod
         int draw_y = y;
         draw_y += (enchantments.Count > 0) ? 8 : 4;
         for (int i = 0; i < numBaitSlots; i++) {
-            if (i == maxNumSlotOneRow) {
-                draw_y += pixelSize;
-            }
             DrawAttachmentSlot(i, b, draw_x, draw_y);
-            if (i != maxNumSlotOneRow - 1) {
-                draw_x += pixelSize;
-            }
-            else {
-                draw_x = x;
-            }
+            draw_x += slotPixelSize;
         }
-        draw_y += pixelSize;
+        draw_x = x;
+        draw_y += slotPixelSize;
         for (int i = 0; i < numTackleSlots; i++)
         {
-            if (i == maxNumSlotOneRow) {
-                draw_y += pixelSize;
-            }
             DrawAttachmentSlot(maxBait + i, b, draw_x, draw_y);
-            if (i != maxNumSlotOneRow - 1) {
-                draw_x += pixelSize;
-            }
-            else {
-                draw_x = x;
-            }
+            draw_x += slotPixelSize;
         }
     }
 
@@ -118,7 +102,7 @@ public class MyFishingRod : FishingRod
 
     public void OpenMenu()
     {
-        // todo
+        // TODO: manage menu
         return;
     }
 
@@ -127,14 +111,14 @@ public class MyFishingRod : FishingRod
         if (target_index < 0 || target_index >= numBaitSlots) {
             return;
         }
-        // todo
+        // TODO
     }
 
     public void AddTackle(Item target, int target_index) {
         if (target_index < 0 || target_index >= numTackleSlots) {
             return;
         }
-        //todo
+        // TODO
     }
 }
 

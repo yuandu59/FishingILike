@@ -27,7 +27,15 @@ namespace Ebbbb.FishingILike
         Tackle
     }
 
-    public class Utility
+    public class MyConstant
+    {
+        public const int maxBaitConst = 8;
+
+        public const int maxTackleConst = 8;
+    }
+
+
+    public class MyUtility
     {
         public static int ChangeRodPlayerInventory(Farmer who, ModConfig config) {
             if (who == null) {
@@ -41,6 +49,9 @@ namespace Ebbbb.FishingILike
                     MyFishingRod? new_rod = JsonSerializer.Deserialize<MyFishingRod>(origin_json);
                     if (new_rod is not null) {
                         new_rod.Update(config);
+
+                        // TODO: inherit attachment and enchantment info
+                        
                         who.Items[i] = new_rod;
                         sum += 1;
                     }
@@ -63,6 +74,17 @@ namespace Ebbbb.FishingILike
                 }
             }
             return sum;
+        }
+
+        public static void RecoverVanillaRod(string command, string[] args)
+        {
+            Farmer who = Game1.player;
+            for (int i = 0; i < who.MaxItems; i++) {
+                if (who.Items[i] != null && who.Items[i].ItemId == "(T)AdvancedIridiumRod" && who.Items[i] is MyFishingRod my_rod) {
+                    FishingRod vanilla_rod = my_rod;
+                    who.Items[i] = vanilla_rod;
+                }
+            }
         }
     }
 }
